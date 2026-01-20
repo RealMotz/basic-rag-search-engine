@@ -1,0 +1,49 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ENDIFVHOME	.venv/bin/activate.bat	/^:ENDIFVHOME$/;"	l
+ENDIFVHOME	.venv/bin/deactivate.bat	/^:ENDIFVHOME$/;"	l
+ENDIFVPATH	.venv/bin/deactivate.bat	/^:ENDIFVPATH$/;"	l
+ENDIFVPATH1	.venv/bin/activate.bat	/^:ENDIFVPATH1$/;"	l
+ENDIFVPATH2	.venv/bin/activate.bat	/^:ENDIFVPATH2$/;"	l
+ENDIFVPROMPT	.venv/bin/deactivate.bat	/^:ENDIFVPROMPT$/;"	l
+PYTHONHOME	.venv/bin/activate.bat	/^@set PYTHONHOME=$/;"	v
+VIRTUALENV_PATCH_FILE	.venv/lib/python3.12/site-packages/_virtualenv.py	/^VIRTUALENV_PATCH_FILE = os.path.join(__file__)$/;"	v
+VIRTUAL_ENV	.venv/bin/deactivate.bat	/^@set VIRTUAL_ENV=$/;"	v
+VIRTUAL_ENV_PROMPT	.venv/bin/deactivate.bat	/^@set VIRTUAL_ENV_PROMPT=$/;"	v
+_DISTUTILS_PATCH	.venv/lib/python3.12/site-packages/_virtualenv.py	/^_DISTUTILS_PATCH = "distutils.dist", "setuptools.dist"$/;"	v
+_Finder	.venv/lib/python3.12/site-packages/_virtualenv.py	/^class _Finder:$/;"	c
+_OLD_CODEPAGE	.venv/bin/activate.bat	/^    @set _OLD_CODEPAGE=$/;"	v
+_OLD_CODEPAGE	.venv/bin/activate.bat	/^@for \/f "tokens=2 delims=:." %%a in ('"%SystemRoot%\\System32\\chcp.com"') do @set _OLD_CODEPAGE=%%a$/;"	v
+_OLD_VIRTUAL_PATH	.venv/bin/deactivate.bat	/^    @set _OLD_VIRTUAL_PATH=$/;"	v
+_OLD_VIRTUAL_PROMPT	.venv/bin/deactivate.bat	/^    @set _OLD_VIRTUAL_PROMPT=$/;"	v
+_OLD_VIRTUAL_PYTHONHOME	.venv/bin/deactivate.bat	/^    @set _OLD_VIRTUAL_PYTHONHOME=$/;"	v
+abs_file	.venv/bin/activate_this.py	/^    abs_file = os.path.abspath(__file__)$/;"	v
+annotations	.venv/bin/activate_this.py	/^from __future__ import annotations$/;"	i
+argparse	cli/keyword_search_cli.py	/^import argparse$/;"	i
+base	.venv/bin/activate_this.py	/^base = bin_dir[: -len("bin") - 1]  # strip away the bin part from the __file__, plus the path separator$/;"	v
+bin_dir	.venv/bin/activate_this.py	/^bin_dir = os.path.dirname(abs_file)$/;"	v
+exec_module	.venv/lib/python3.12/site-packages/_virtualenv.py	/^    def exec_module(old, module):$/;"	m	class:_Finder
+find_spec	.venv/lib/python3.12/site-packages/_virtualenv.py	/^    def find_spec(self, fullname, path, target=None):  # noqa: ARG002$/;"	m	class:_Finder
+fullname	.venv/lib/python3.12/site-packages/_virtualenv.py	/^    fullname = None$/;"	v	class:_Finder
+load_module	.venv/lib/python3.12/site-packages/_virtualenv.py	/^    def load_module(old, name):$/;"	m	class:_Finder
+lock	.venv/lib/python3.12/site-packages/_virtualenv.py	/^    lock = []  # noqa: RUF012$/;"	v	class:_Finder
+main	cli/keyword_search_cli.py	/^def main() -> None:$/;"	f
+msg	.venv/bin/activate_this.py	/^    msg = "You must use import runpy; runpy.run_path(this_file)"$/;"	v
+os	.venv/bin/activate_this.py	/^import os$/;"	i
+os	.venv/lib/python3.12/site-packages/_virtualenv.py	/^import os$/;"	i
+parse_config_files	.venv/lib/python3.12/site-packages/_virtualenv.py	/^    def parse_config_files(self, *args, **kwargs):$/;"	f	function:patch_dist
+partial	.venv/lib/python3.12/site-packages/_virtualenv.py	/^            from functools import partial$/;"	i
+patch_dist	.venv/lib/python3.12/site-packages/_virtualenv.py	/^def patch_dist(dist):$/;"	f
+path	.venv/bin/activate_this.py	/^    path = os.path.realpath(os.path.join(bin_dir, lib))$/;"	v
+prev_length	.venv/bin/activate_this.py	/^prev_length = len(sys.path)$/;"	v
+run_path	.venv/bin/activate_this.py	/^    msg = "You must use import runpy; runpy.run_path(this_file)"$/;"	i
+runpy	.venv/bin/activate_this.py	/^    msg = "You must use import runpy; runpy.run_path(this_file)"$/;"	i
+site	.venv/bin/activate_this.py	/^import site$/;"	i
+sys	.venv/bin/activate_this.py	/^import sys$/;"	i
+sys	.venv/lib/python3.12/site-packages/_virtualenv.py	/^import sys$/;"	i
+this_file	.venv/bin/activate_this.py	/^    msg = "You must use import runpy; runpy.run_path(this_file)"$/;"	i
+threading	.venv/lib/python3.12/site-packages/_virtualenv.py	/^                import threading$/;"	i
