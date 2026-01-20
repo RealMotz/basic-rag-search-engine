@@ -2,7 +2,17 @@
 
 import argparse
 import json
+import string
 
+def generate_punctuation_table() -> dict:
+    table = {}
+    for symbol in string.punctuation:
+        table[symbol] = None
+    return table
+
+def remove_punctuation(str, table) -> str:
+    translation_table = str.maketrans(table)
+    return str.translate(translation_table)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Keyword Search CLI")
@@ -19,9 +29,11 @@ def main() -> None:
             with open("data/movies.json", 'r') as f:
                 dic = json.load(f)
                 result = []
+                
+                table = generate_punctuation_table()
                 for movie in dic["movies"]:
                     # Simple substring match for demonstration purposes
-                    if args.query.lower() in movie["title"].lower():
+                    if args.query.lower() in remove_punctuation(movie["title"], table).lower():
                         result.append(movie)
                 result = result[:5]
                 sorted_results = sorted(result, key=lambda m: m["id"])
