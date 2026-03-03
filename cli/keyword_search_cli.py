@@ -2,17 +2,21 @@
 
 import argparse
 import json
+import os
 import string
 
-def generate_punctuation_table() -> dict:
-    table = {}
-    for symbol in string.punctuation:
-        table[symbol] = None
-    return table
+PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
+DATA_PATH = os.path.join(PROJECT_ROOT, "data", "movies.json")
 
-def remove_punctuation(str, table) -> str:
-    translation_table = str.maketrans("", "", table)
-    return str.translate(translation_table)
+def preprocess_text(text: str) -> str:
+    text = text.lower()
+    text = text.translate(str.maketrans("", "", string.punctuation))
+    return text
+
+def tokenize(text: str) -> list[str]:
+    text = preprocess_text(text)
+    text = text.split()
+    return text
 
 def has_match(query_tokens, title_tokens) -> bool:
     for query in query_tokens:
@@ -20,6 +24,11 @@ def has_match(query_tokens, title_tokens) -> bool:
             if query in title:
                 return True
     return False
+
+def load_movies() -> list[dict]:
+    with open(DATA_PATH, 'r') as f:
+        dic = json.load(f)
+    return dic["movies"]
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Keyword Search CLI")
@@ -32,26 +41,20 @@ def main() -> None:
 
     match args.command:
         case "search":
-            # print the search query here            
-            with open("data/movies.json", 'r') as f:
-                dic = json.load(f)
-                result = []
-                
-                # Simple substring match for demonstration purposes
-                table = generate_punctuation_table()
-                for movie in dic["movies"]:
-                    punctuation_free_title = remove_punctuation(movie["title"], table).lower()
-                    
-                    query_tokens = [token.strip() for token in args.query.lower().split(" ") if token != ""]
-                    title_tokens = [token.strip() for token in punctuation_free_title.split(" ") if token != ""]
-                    if has_match(query_tokens, title_tokens):
-                        result.append(movie)
-                result = result[:5]
-                sorted_results = sorted(result, key=lambda m: m["id"])
-                
-                print(f"Searching for: {args.query}")
-                for movie, idx in zip(sorted_results, range(1, len(sorted_results) + 1)):
-                    print(f"{idx}. {movie['title']}")
+            result = []
+            # Simple substring match for demonstration purposes
+            for movie in load_movies():
+                title = preprocess_text(movie["title"])
+                query = preprocess_text(args.query)
+                if has_match(tokenize(query), tokenize(title)):
+                    result.append(movie)
+
+            result = result[:5]
+            sorted_results = sorted(result, key=lambda m: m["id"])
+
+            print(f"Searching for: {args.query}")
+            for movie, idx in zip(sorted_results, range(1, len(sorted_results) + 1)):
+                print(f"{idx}. {movie['title']}")
             pass
         case _:
             parser.print_help()
