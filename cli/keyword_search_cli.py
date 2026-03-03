@@ -11,8 +11,15 @@ def generate_punctuation_table() -> dict:
     return table
 
 def remove_punctuation(str, table) -> str:
-    translation_table = str.maketrans(table)
+    translation_table = str.maketrans("", "", table)
     return str.translate(translation_table)
+
+def has_match(query_tokens, title_tokens) -> bool:
+    for query in query_tokens:
+        for title in title_tokens:
+            if query in title:
+                return True
+    return False
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Keyword Search CLI")
@@ -30,10 +37,14 @@ def main() -> None:
                 dic = json.load(f)
                 result = []
                 
+                # Simple substring match for demonstration purposes
                 table = generate_punctuation_table()
                 for movie in dic["movies"]:
-                    # Simple substring match for demonstration purposes
-                    if args.query.lower() in remove_punctuation(movie["title"], table).lower():
+                    punctuation_free_title = remove_punctuation(movie["title"], table).lower()
+                    
+                    query_tokens = [token.strip() for token in args.query.lower().split(" ") if token != ""]
+                    title_tokens = [token.strip() for token in punctuation_free_title.split(" ") if token != ""]
+                    if has_match(query_tokens, title_tokens):
                         result.append(movie)
                 result = result[:5]
                 sorted_results = sorted(result, key=lambda m: m["id"])
